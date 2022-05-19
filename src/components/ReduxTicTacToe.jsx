@@ -1,9 +1,12 @@
 import React, {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { MARKIT } from "../redux/actionTypes";
 import { Item } from "./Item";
 
-export const TicTacToe = () => {
+export const ReduxTicTacToe = () => {
 
-    const [state, setState] = useState(["", "", "", "", "", "", "", "", ""]);
+    const state = useSelector(state => state.tictactoe);
+    const dispatch = useDispatch();
     const [times, setTimes] = useState(1);
     const [winner, setWinner] = useState("");
     const [timetravel, setTimetravel] = useState([]);
@@ -51,7 +54,11 @@ export const TicTacToe = () => {
         newState[i] = value;
 
         if(state[i] === "" && winner === "") {
-            setState([...newState]);
+            // setState([...newState]);
+            dispatch({
+                type: MARKIT,
+                payload: newState
+            })
             setTimes(pre => pre+1);
             setTimetravel([...timetravel, newState]);
             checkWinner([...newState])
@@ -60,7 +67,11 @@ export const TicTacToe = () => {
     }
 
     const resetTictactoe = () => {
-        setState(["", "", "", "", "", "", "", "", ""]);
+        // setState(["", "", "", "", "", "", "", "", ""]);
+        dispatch({
+            type: MARKIT,
+            payload: ["", "", "", "", "", "", "", "", ""]
+        })
         setWinner("");
         setTimetravel([]);
     }
@@ -79,7 +90,7 @@ export const TicTacToe = () => {
       <div>
 
       {
-          timetravel.length > 0 && timetravel.map((state, index) => <button onClick={() => setState([...state])}>{index+1}</button> )
+        //   timetravel.length > 0 && timetravel.map((state, index) => <button onClick={() => setState([...state])}>{index+1}</button> )
       }
       </div>
     `<button onClick={resetTictactoe}>Reset</button> 

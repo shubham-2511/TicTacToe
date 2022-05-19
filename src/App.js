@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { ReduxTicTacToe } from './components/ReduxTicTacToe';
 import { TicTacToe } from './components/TicTacToe';
 import { INCREMENT } from './redux/actionTypes';
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <ReduxTicTacToe />
       <h1>{counter}</h1>
       <button onClick={increase}>Increment</button>
       <TicTacToe />
