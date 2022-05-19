@@ -68,6 +68,7 @@ export const TicTacToe = () => {
 
   return (
     <div style={{ display: "grid",  placeItems: "center", height: "100vh", width: "100vw", backgroundColor: "lightblue"}}>
+        
       <div style={{ width: "290px", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(3, 1fr)", gap: "10px"}}>
         {
             state.map((value, index) => <Item key={index} onClick={onClick} value={value} index={index} />)
